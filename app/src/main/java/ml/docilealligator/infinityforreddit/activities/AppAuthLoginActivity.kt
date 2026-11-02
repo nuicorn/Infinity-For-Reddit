@@ -267,7 +267,11 @@ class AppAuthLoginActivity : BaseActivity() {
             uriBuilder.appendQueryParameter(APIUtils.SCOPE_KEY, APIUtils.SCOPE)
 
             val authTabIntent = AuthTabIntent.Builder().setEphemeralBrowsingEnabled(true).build()
-            authTabIntent.launch(mLauncher, uriBuilder.build(), "infinity")
+            authTabIntent.launch(
+                mLauncher,
+                uriBuilder.build(),
+                requireNotNull(APIUtils.REDIRECT_URI.toUri().scheme)
+            )
         }
     }
 
